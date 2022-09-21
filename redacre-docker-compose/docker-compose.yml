@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  # using nginx to proxy trafic to frontend 
+  reverse-proxy:
+    image: nginx:latest
+    container_name: reverse_proxy
+    depends_on:
+        - sys-stats
+        - api       
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  # generates the frontend
+  sys-stats:
+    image: sys-stats
+    container_name: sys-stats
+    build:
+      context: ./sys-stats
+    depends_on:
+        - api
+    ports:
+      - 8080:80
+    restart: on-failure
+
+  # backend
+  api:
+    image: api
+    container_name: api
+    build:
+      context: ./api
+    ports:
+      - 5000:5000
+    restart: on-failure
