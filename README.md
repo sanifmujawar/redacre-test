@@ -9,10 +9,10 @@ Extract both the folder to your pc **redacre-docker-compose** as well as **redac
 ### Step 2 - Deploy on Cloud
 - In order to deploy this application on AWS set the AWS credentials.
 - Use the following commands
-- terraform init
-- teraform plan
-- teraform apply
+- **terraform init**
+- **teraform plan**
+- **teraform apply**
 
 ### Step 3 - Get it to work with Kubernetes
 - In order to work with Kubernetes enter the given command.
-- kubectl apply -f sys-stats.yaml
+- **kubectl apply -f sys-stats.yaml**
